@@ -1,14 +1,14 @@
 import {  Link, NavLink } from "react-router-dom";
-// import './navbar.css';
+import './navbar.css'
 import { useContext} from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
 
 const Navbar = () => {
     const links =<>
-    <li className="text-lg lg:text-xl  font-semibold text-black  hover:text-indigo-900 lg:px-3"><NavLink to="/">Home</NavLink></li>
-    <li className="text-lg lg:text-xl font-semibold text-black hover:text-indigo-900 lg:px-3 "><NavLink to="/allFood">All Food</NavLink></li>
-    <li className="text-lg lg:text-xl font-semibold text-black hover:text-indigo-900 lg:px-3"><NavLink to="/blog">Blog</NavLink></li>
-    <li className="text-lg lg:text-xl font-semibold text-black hover:text-indigo-900 lg:px-3"><NavLink to="/dashboard">Dashboard</NavLink></li>
+    <li className="text-lg lg:text-lg font-semibold hover:text-indigo-900 lg:px-3"><NavLink to="/">Home</NavLink></li>
+    <li className="text-lg lg:text-lg font-semibold text-black hover:text-indigo-900 lg:px-3 "><NavLink to="/allFood">All Food</NavLink></li>
+    <li className="text-lg lg:text-lg font-semibold text-black hover:text-indigo-900 lg:px-3"><NavLink to="/blog">Blog</NavLink></li>
+    <li className="text-lg lg:text-lg font-semibold text-black hover:text-indigo-900 lg:px-3"><NavLink to="/dashboard">Dashboard</NavLink></li>
     
     </>
 
@@ -55,7 +55,7 @@ const handleSignOut=()=>{
   <label tabIndex={0} className="hover:underline"> <img
                 src={user.photoURL} 
                 alt="Profile"
-                className="h-12 w-12 rounded-full mr-2"
+                className="h-10 w-10 rounded-full mr-2"
               /></label>
   <ul tabIndex={0} className="dropdown-content z-[1] menu -ml-32 p-2 shadow bg-base-100 rounded-box w-36">
   <h2 className="text-lg font-semibold hidden text-black lg:block">{user.displayName}</h2>
