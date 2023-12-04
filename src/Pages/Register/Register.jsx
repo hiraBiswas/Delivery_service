@@ -23,7 +23,7 @@ const Register = () => {
   const axiosPublic = useAxiosPublic();
   const auth = getAuth();
   const { createUser } = useContext(AuthContext);
-  
+
   const onSubmit = async (data) => {
     try {
       const { password, name, image, type, email } = data;
@@ -129,7 +129,7 @@ const Register = () => {
                   <select {...register('type', { required: true })}  defaultValue="default" className="input rounded-none border-none border-transparent  bg-violet-200 drop-shadow text-black focus:outline-indigo-950 focus:bg-white">
   <option disabled value="default">Choose the type.</option>
   <option>User</option>
-  <option>DeliveryMan</option>
+  <option>Deliveryman</option>
 </select>
                 </div>
 

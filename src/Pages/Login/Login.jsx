@@ -47,18 +47,7 @@ const Login = () => {
                             <input type="text" name='email' placeholder="email" className="input rounded-none border-none border-transparent  bg-violet-200 drop-shadow text-black focus:outline-indigo-950 focus:bg-white" />
                         </div>
 
-                        <div className="form-control drop-shadow  px-12 ">
-                            <label className="label">
-                                <span className="label-text  text-black">Type</span>
-                            </label>
-                            {/* <input type="password" name='password' placeholder="Type" className="input rounded-none border-none  border-cyan-600 bg-cyan-50  text-black" /> */}
-                            <select className="input rounded-none border-none border-transparent  bg-violet-200 drop-shadow text-black focus:outline-indigo-950 focus:bg-white">
-                                <option disabled selected>Choose the role?</option>
-                                <option>Admin</option>
-                                <option>DeliveryMan</option>
-                                <option>User</option>
-                            </select>
-                        </div>
+                      
 
                         <div className="form-control drop-shadow  px-12 ">
                             <label className="label">
