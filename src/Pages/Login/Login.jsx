@@ -4,6 +4,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { BsGoogle } from 'react-icons/bs';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SocialLogin from "./SocialLogin/SocialLogin";
 
 
 const Login = () => {
@@ -12,7 +13,7 @@ const Login = () => {
     const location = useLocation()
     console.log('location in login page', location)
     const navigate = useNavigate()
-    const { signIn, signInWithGoogle } = useContext(AuthContext)
+    const { signIn, loading } = useContext(AuthContext)
 
 
     const handleLogin = e => {
@@ -67,16 +68,12 @@ const Login = () => {
 
                             <p className="text-black py-3">New to the website? <span className="text-indigo-950"><Link to="/register">Sign Up</Link></span> here.</p>
                         </div>
-                        <div className="px-8 py-1">
-                            <h2 className="text-center text-white">Or</h2>
-                            <div onClick={signInWithGoogle} className="flex items-center gap-6 justify-center">
-                                <BsGoogle className="text-xl text-indigo-950"></BsGoogle>
-                                <Link className="text-indigo-950 text-xl">Login with Google</Link>
-                            </div>
-                        </div>
+                        
+                        
                         <div className="form-control mt-2">
                             <input className="btn bg-indigo-950 mx-12 text-white drop-shadow hover:bg-white hover:text-cyan-600" type="submit" value="Login" />
                         </div>
+                        <SocialLogin></SocialLogin>
                     </form>
 
                     <div className="flex-1 h-full">

@@ -12,9 +12,7 @@ const Navbar = () => {
     
     </>
 
-
-const {user,loading, logOut}= useContext(AuthContext)
-console.log(user)
+const {user, logOut}= useContext(AuthContext)
 const handleSignOut=()=>{
      logOut()
      .then(result=>{
@@ -58,7 +56,7 @@ const handleSignOut=()=>{
                 className="h-10 w-10 rounded-full mr-2"
               /></label>
   <ul tabIndex={0} className="dropdown-content z-[1] menu -ml-32 p-2 shadow bg-base-100 rounded-box w-36">
-  <h2 className="text-lg font-semibold hidden text-black lg:block">{user.displayName}</h2>
+  <h2 className="text-lg font-semibold hidden text-black lg:block">{user?.displayName}</h2>
   <button onClick={handleSignOut} className="text-start text-lg text-black font-semibold"  >LogOut</button>
   </ul>
 </div>

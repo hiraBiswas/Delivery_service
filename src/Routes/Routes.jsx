@@ -10,6 +10,7 @@ import Dashboard from '../Layout/Dashboard'
 import BookParcel from "../Pages/Dashboard/BookParcel/BookParcel";
 import MyParcel from "../Pages/Dashboard/MyParcel/MyParcel";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
+import PrivateRoute from "./PrivateRoute";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -33,7 +34,7 @@ export const router = createBrowserRouter([
 
     {
       path:'dashboard',
-      element:<Dashboard></Dashboard>,
+      element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children:[
         {
           path:'bookParcel',
@@ -42,6 +43,24 @@ export const router = createBrowserRouter([
         {
           path:'myParcel',
           element:<MyParcel></MyParcel>
+        },
+        {
+          path:'myProfile',
+          element:<MyProfile></MyProfile>
+        }
+        ,
+        {
+          path:'myProfile',
+          element:<MyProfile></MyProfile>
+        },
+        {
+          path:'myProfile',
+          element:<MyProfile></MyProfile>
+        }
+        ,
+        {
+          path:'myProfile',
+          element:<MyProfile></MyProfile>
         },
         {
           path:'myProfile',

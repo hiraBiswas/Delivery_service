@@ -5,31 +5,30 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
-
-import { useForm } from 'react-hook-form';
+import useAxiosPublic from '../../hooks/useAxiosPublic'
+import { useForm } from 'react-hook-form'; 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Register = () => {
+
   const {
     register,
-    handleSubmit,
+    handleSubmit, reset,
     formState: { errors },
   } = useForm();
   const location = useLocation();
   const navigate = useNavigate();
-
+  const axiosPublic = useAxiosPublic();
   const auth = getAuth();
   const { createUser } = useContext(AuthContext);
-
+  
   const onSubmit = async (data) => {
     try {
-      console.log(data);
-
       const { password, name, image, type, email } = data;
-      console.log(password);
-
+  
+      // Password validation
       if (password.length < 6) {
         toast.error("Password should be at least 6 characters long");
         return;
@@ -39,55 +38,68 @@ const Register = () => {
         return;
       }
       if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
-        toast.error(
-          "Password should contain at least one special character"
-        );
+        toast.error("Password should contain at least one special character");
         return;
       }
-
+  
+      // Image upload
       const imageFile = data.image[0];
-
-      // Create FormData object
       const formData = new FormData();
       formData.append("image", imageFile);
-
-      // Perform the fetch request
+  
       const response = await fetch(image_hosting_api, {
         method: "POST",
         body: formData,
       });
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
+  
       const res = await response.json();
-      if (res.success) {
-        // Handle the ImgBB API response data
-        console.log(res);
-        createUser(name, image, type, email, password)
-          .then((result) => {
-            console.log(result.user);
-            updateProfile(auth.currentUser, {
-              displayName: name,
-              photoURL: res.data.display_url,
-            })
-              .then((result) => {
-                toast.success("Registration Successful");
-                navigate(location?.state ? location.state : "/");
+      if (!res.success) {
+        toast.error("Error during image upload");
+        return;
+      }
+  
+      // Firebase authentication
+      createUser(name, res.data.display_url, type, email, password)
+        .then(() => {
+          updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: res.data.display_url,
+          })
+          .then(() => {
+            // Database upload
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+              type: data.type,
+            };
+  
+            axiosPublic.post('/users', userInfo)
+              .then(res => {
+                if (res.data.insertedId) {
+                  // Success
+                  toast.success('Registered Successfully');
+                  reset(); // Clear the form
+                  navigate('/');
+                }
               })
               .catch((error) => {
-                toast.error(error.message);
+                toast.error(`Error posting user info: ${error.message}`);
               });
           })
           .catch((error) => {
-            console.error("Registration error:", error.message);
+            toast.error(`Profile update error: ${error.message}`);
           });
-      } else {
-        toast.error("Error during image upload");
-      }
+        })
+        .catch((error) => {
+          toast.error(`User creation error: ${error.message}`);
+        });
+  
     } catch (error) {
-      console.error("Error during image upload:", error);
+      toast.error(`Error during form submission: ${error.message}`);
     }
   };
   return (
