@@ -11,6 +11,9 @@ import BookParcel from "../Pages/Dashboard/BookParcel/BookParcel";
 import MyParcel from "../Pages/Dashboard/MyParcel/MyParcel";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 import PrivateRoute from "./PrivateRoute";
+import AllParcel from "../Pages/Dashboard/AllParcel/AllParcel";
+import AllUser from "../Pages/Dashboard/AllUser/AllUser";
+import AllDeliveryMan from "../Pages/Dashboard/AllDeliveryMan/AllDeliveryMan";
 export const router = createBrowserRouter([
     {
       path: "/",
@@ -37,6 +40,19 @@ export const router = createBrowserRouter([
       element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children:[
         {
+          path:'allParcel',
+          element:<AllParcel></AllParcel>
+        },
+        {
+          path:'allUser',
+          element:<AllUser></AllUser>
+        }
+        ,
+        {
+          path:'allDeliveryMan',
+          element:<AllDeliveryMan></AllDeliveryMan>
+        },
+        {
           path:'bookParcel',
           element:<BookParcel></BookParcel>
         },
@@ -49,23 +65,8 @@ export const router = createBrowserRouter([
           element:<MyProfile></MyProfile>
         }
         ,
-        {
-          path:'myProfile',
-          element:<MyProfile></MyProfile>
-        },
-        {
-          path:'myProfile',
-          element:<MyProfile></MyProfile>
-        }
-        ,
-        {
-          path:'myProfile',
-          element:<MyProfile></MyProfile>
-        },
-        {
-          path:'myProfile',
-          element:<MyProfile></MyProfile>
-        }
+        
+        
       ]
     }
   ]);

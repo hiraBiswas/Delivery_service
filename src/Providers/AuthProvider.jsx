@@ -43,6 +43,8 @@ const AuthProvider = ({ children }) => {
       });
   };
 
+  const isAdmin = user && user.type === 'Admin';
+
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
@@ -66,6 +68,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     loading,
     signInWithGoogle,
+    isAdmin,
   };
 
   return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
