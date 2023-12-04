@@ -2,14 +2,13 @@ import {  Link, NavLink } from "react-router-dom";
 import './navbar.css'
 import { useContext} from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
-
+import { IoIosNotifications } from "react-icons/io";
 const Navbar = () => {
     const links =<>
     <li className="text-lg lg:text-lg font-semibold hover:text-indigo-900 lg:px-3"><NavLink to="/">Home</NavLink></li>
-    <li className="text-lg lg:text-lg font-semibold text-black hover:text-indigo-900 lg:px-3 "><NavLink to="/allFood">All Food</NavLink></li>
-    <li className="text-lg lg:text-lg font-semibold text-black hover:text-indigo-900 lg:px-3"><NavLink to="/blog">Blog</NavLink></li>
+
     <li className="text-lg lg:text-lg font-semibold text-black hover:text-indigo-900 lg:px-3"><NavLink to="/dashboard">Dashboard</NavLink></li>
-    
+    <li className="text-lg lg:text-lg font-semibold text-black hover:text-indigo-900 lg:px-3"><NavLink to="/notification">Notification <IoIosNotifications></IoIosNotifications></NavLink></li>
     </>
 
 const {user, logOut}= useContext(AuthContext)

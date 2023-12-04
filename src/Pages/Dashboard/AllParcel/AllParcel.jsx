@@ -6,7 +6,7 @@ const AllParcel = () => {
 
   useEffect(() => {
     // Fetch data from /bookings API
-    fetch('http://localhost:5000/bookings')
+    fetch('https://delivery-service-sever.vercel.app/bookings')
       .then((response) => response.json())
       .then((data) => setBookings(data))
       .catch((error) => console.error('Error fetching bookings:', error));

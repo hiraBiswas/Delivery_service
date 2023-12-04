@@ -37,7 +37,7 @@ const BookParcel = () => {
     const newBooking = { name, status ,email,bookingDate: currentDate, phoneNumber, price, parcelDeliveryAddress, parcelType, parcelWeight,receiverName, receiverPhoneNumber, addressLatitude, addressLongitude, date };
     console.log(newBooking);
 
-    fetch('http://localhost:5000/bookings', {
+    fetch('https://delivery-service-sever.vercel.app/bookings', {
   method: 'POST',
   headers: {
     'content-type': 'application/json',

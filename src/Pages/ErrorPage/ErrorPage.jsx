@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
 
 
 const ErrorPage = () => {
     return (
-        <div>
-            <img src="https://lottie.host/embed/c8aaf061-ae64-4b0a-8d0f-4a46ffbdc2ec/slnpieYoXb.json" alt="" />
+        <div className="container mx-auto mt-12">
+           <img src="https://i.postimg.cc/fR37kMwV/404-maintenance-error-landing-page-vector.jpg" alt="" />
+           <div className="flex items-center">
+           <Link to="/"> <button className="btn bg-indigo-950 text-white">Back to Home</button></Link>
+           </div>
         </div>
     );
 };
